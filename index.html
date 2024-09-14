@@ -92,44 +92,112 @@
             offer an unparalleled escape from the ordinary, inviting you to
             explore a subterranean world of wonders.
           </p>
-          <button onclick="handleBookNowClick()" class="book-now-button">
-            Book Now
-          </button>
-
-          <!-- Add this modal HTML at the end of your body tag -->
-          <div id="checkoutModal" class="modal">
-            <div class="modal-content">
-              <span class="close" onclick="closeModal()">&times;</span>
-              <h2>Checkout</h2>
-              <div id="checkoutStep1">
-                <!-- Step 1 content -->
-                <div class="input-group">
-                  <label for="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                  />
-                </div>
-                <div class="input-group">
-                  <label for="name">Name (Optional)</label>
-                  <input type="text" id="name" placeholder="Enter your name" />
-                </div>
-                <button onclick="setCheckoutStep(2)" class="next-button">
-                  Next →
-                </button>
+          <div class="bookRoomCta">
+            <h3 class="priceDisplay">
+              <span class="discountedPrice">$ <span id="originalPrice">100</span></span>
+              <span class="discountInfo"> | discount <span id="discountPercentage">10</span>%. Now <span class="finalPrice">$ <span id="discountedPrice">90</span></span></span>
+            </h3>
+          
+            <div class="divider"></div>
+          
+            <h4 class="specialNote">Special offer: Book now and get a free breakfast!</h4>
+          
+            <div class="datePickerContainer">
+              <div class="datePicker">
+                <label for="check-in-date">Check In date</label>
+                <input type="date" id="check-in-date">
               </div>
-              <div id="checkoutStep2" style="display: none">
-                <!-- Step 2 content -->
-                <div class="amount-display">
+              <div class="datePicker">
+                <label for="check-out-date">Check Out date</label>
+                <input type="date" id="check-out-date">
+              </div>
+            </div>
+          
+            <div class="guestInputContainer">
+              <div class="guestInput">
+                <label for="adults">Adults</label>
+                <input type="number" id="adults" value="1" min="1" max="5">
+              </div>
+              <div class="guestInput">
+                <label for="children">Children</label>
+                <input type="number" id="children" value="0" min="0" max="3">
+              </div>
+            </div>
+          
+            <p class="totalPrice">Total Price: $ <span id="totalPrice">0</span></p>
+          
+            <button onclick="handleBookNowClick()" class="bookNowButton">Book Now</button>
+          </div>
+          
+          <div id="checkoutModal" class="modalOverlay" style="display: none;">
+            <div class="modalContent">
+              <button class="closeModal" onclick="closeModal()">&times;</button>
+              <h2 class="modalTitle">Checkout</h2>
+              <div id="checkoutStep1" class="checkoutStep">
+                <div class="roomDetails">
+                  <div class="roomDetailsHeader">
+                    <span class="roomDetailsTitle">Room Details</span>
+                    <span class="roomDetailsIcon">🏨</span>
+                  </div>
+                  <div class="roomDetailsContent">
+                    <p><strong>Check-in:</strong> <span id="modalCheckIn"></span></p>
+                    <p><strong>Check-out:</strong> <span id="modalCheckOut"></span></p>
+                    <p><strong>Guests:</strong> <span id="modalGuests"></span></p>
+                    <p><strong>Total Nights:</strong> <span id="modalNights"></span></p>
+                  </div>
+                </div>
+                <div class="inputGroup">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" placeholder="Enter your email">
+                </div>
+                <div class="inputGroup">
+                  <label for="name">Name (Optional)</label>
+                  <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <button onclick="setCheckoutStep(2)" class="nextButton">Next <span class="arrowIcon">→</span></button>
+              </div>
+              <div id="checkoutStep2" class="checkoutStep" style="display:none;">
+                <div class="roomDetails">
+                  <div class="roomDetailsHeader">
+                    <span class="roomDetailsTitle">Room Details</span>
+                    <span class="roomDetailsIcon">🏨</span>
+                  </div>
+                  <div class="roomDetailsContent">
+                    <p><strong>Check-in:</strong> <span id="modalCheckIn2"></span></p>
+                    <p><strong>Check-out:</strong> <span id="modalCheckOut2"></span></p>
+                    <p><strong>Guests:</strong> <span id="modalGuests2"></span></p>
+                    <p><strong>Total Nights:</strong> <span id="modalNights2"></span></p>
+                  </div>
+                </div>
+                <div class="amountDisplay">
                   <label for="amount">Amount (USDT)</label>
-                  <input type="number" id="amount" readonly />
+                  <input type="number" id="amount" class="amountInput" readonly>
                 </div>
-                <div class="time-remaining">
-                  <p>Time Remaining</p>
-                  <p id="timeRemaining">20:00</p>
+                <div class="timeRemaining">
+                  <p class="timeRemainingTitle">Time Remaining</p>
+                  <p id="timeRemaining" class="timeRemainingValue">20:00</p>
                 </div>
-                <!-- Add more fields as needed -->
+                <div class="inputGroup">
+                  <label for="walletAddress">Recipient USDT Address (Polygon Network)</label>
+                  <div class="walletAddressContainer">
+                    <input id="walletAddress" value="0x1234567890123456789012345678901234567890" readonly>
+                    <button onclick="handleCopy('0x1234567890123456789012345678901234567890')" class="copyButton">Copy</button>
+                  </div>
+                </div>
+                <div class="inputGroup">
+                  <label for="senderAddress">Your USDT Address (for verification)</label>
+                  <input id="senderAddress" placeholder="Enter your USDT address">
+                </div>
+                <button onclick="handleCopy('https://example.com/pay?address=0x1234567890123456789012345678901234567890&amount=' + document.getElementById('amount').value + '&currency=USDT')" class="copyLinkButton">Copy Payment Link</button>
+                <button onclick="toggleQR()" class="toggleQrButton" id="toggleQrButton">Show QR Code</button>
+                <div id="qrContainer" style="display: none; text-align: center; margin-top: 15px;">
+                  <img id="qrCode" alt="Payment QR Code" style="max-width: 200px;">
+                </div>
+                <button onclick="handlePaymentConfirmation()" class="paymentConfirmButton" id="paymentConfirmButton">I have paid</button>
+                <div id="paymentStatus" class="paymentStatus" style="display: none;"></div>
+              </div>
+            </div>
+          </div>
               </div>
             </div>
           </div>
