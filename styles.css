@@ -870,7 +870,7 @@ nav {
   .bookNowButton {
     width: 100%;
     padding: 10px;
-    background-color: #489187;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
@@ -911,6 +911,7 @@ nav {
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
+    align-self: "center";
   }
 
   .closeModal {
@@ -976,7 +977,7 @@ nav {
   .copyLinkButton,
   .toggleQrButton {
     padding: 10px;
-    background-color: #489187;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
@@ -987,7 +988,7 @@ nav {
   .nextButton:hover,
   .copyLinkButton:hover,
   .toggleQrButton:hover {
-    background-color: #3a7a6f;
+    background-color: var(--primary-color);
   }
 
   .arrowIcon {
@@ -1020,7 +1021,7 @@ nav {
   .timeRemainingValue {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #489187;
+    color: var(--primary-color);
   }
 
   .walletAddressContainer {
@@ -1044,7 +1045,7 @@ nav {
   .paymentConfirmButton {
     width: 100%;
     padding: 12px;
-    background-color: #489187;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 5px;
