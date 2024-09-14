@@ -16,7 +16,7 @@
         <div class="nav__header">
           <div class="logo nav__logo">
             <div>H</div>
-            <span>HOTEL<br />MIRANDA</span>
+            <span>HOTEL<br />BANANACRYSTAL</span>
           </div>
           <div class="nav__menu__btn" id="menu-btn">
             <i class="ri-menu-line"></i>
@@ -92,7 +92,47 @@
             offer an unparalleled escape from the ordinary, inviting you to
             explore a subterranean world of wonders.
           </p>
-          <button class="btn">Book Now</button>
+          <button onclick="handleBookNowClick()" class="book-now-button">
+            Book Now
+          </button>
+
+          <!-- Add this modal HTML at the end of your body tag -->
+          <div id="checkoutModal" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <h2>Checkout</h2>
+              <div id="checkoutStep1">
+                <!-- Step 1 content -->
+                <div class="input-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="name">Name (Optional)</label>
+                  <input type="text" id="name" placeholder="Enter your name" />
+                </div>
+                <button onclick="setCheckoutStep(2)" class="next-button">
+                  Next →
+                </button>
+              </div>
+              <div id="checkoutStep2" style="display: none">
+                <!-- Step 2 content -->
+                <div class="amount-display">
+                  <label for="amount">Amount (USDT)</label>
+                  <input type="number" id="amount" readonly />
+                </div>
+                <div class="time-remaining">
+                  <p>Time Remaining</p>
+                  <p id="timeRemaining">20:00</p>
+                </div>
+                <!-- Add more fields as needed -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -429,9 +469,6 @@
             </li>
           </div>
         </div>
-      </div>
-      <div class="footer__bar">
-        Copyright © 2023 Web Design Mastery. All rights reserved.
       </div>
     </footer>
 
